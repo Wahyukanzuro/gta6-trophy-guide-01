@@ -3,138 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vice City Trophy Ledger — GTA VI Trophy Guide &amp; Tracker</title>
-<meta name="description" content="Every one of the 55 Grand Theft Auto VI trophies, with a cited guide, a tracker that saves in this browser, a roadmap, and an honest note wherever the sources disagree.">
+<title>Vice City Trophy Ledger — GTA 6 Trophy Guide &amp; Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="masthead">
-  <div class="mast-top">
-    <div class="mast-title">
-      <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5 &middot; Unofficial fan guide</p>
+<header>
+  <div class="titleRow">
+    <div>
       <h1>Vice City Trophy Ledger</h1>
-      <p class="lede">Every one of the 55 trophies, with a cited guide, a tracker that saves in this browser, and an honest note wherever the sources disagree.</p>
+      <p class="subtitle">GTA 6 trophy guide &amp; tracker — all 55 PlayStation trophies, offline, in your browser</p>
     </div>
-    <div class="goal-card" id="goalCard">
-      <p class="goal-label">The goal</p>
-      <p class="goal-platinum"><span class="grade-dot platinum" aria-hidden="true"></span> Vice Got a Price! <span class="goal-grade">Platinum</span></p>
-      <p class="goal-golds"><span class="grade-dot gold" aria-hidden="true"></span> A Long Road &middot; <span class="grade-dot gold" aria-hidden="true"></span> You Gotta Know When to Get Off</p>
-      <p class="goal-meta">~200 hours &middot; difficulty 4/10 &middot; single-player only &middot; no DLC needed</p>
-    </div>
+    <div class="titleMeta">55 trophies · 1 platinum<br>unofficial fan guide</div>
   </div>
-  <div class="audit" role="status">
-    <span><strong>55</strong> official trophies</span>
-    <span><strong>1</strong> platinum &middot; <strong>2</strong> gold &middot; <strong>6</strong> silver &middot; <strong>46</strong> bronze</span>
-    <span><strong>28</strong> hidden</span>
-    <span><strong>1</strong> possibly missable</span>
-    <span><strong>55/55</strong> guides cite a source</span>
-    <span><strong>175</strong> steps, every step cited</span>
-    <span><strong>10</strong> sources read 20 Nov 2026</span>
-    <span><strong>1,000</strong> Gamerscore</span>
-  </div>
-  <nav class="views" aria-label="Views">
-    <button type="button" class="view-btn active" data-view="checklist">Checklist</button>
-    <button type="button" class="view-btn" data-view="roadmap">Roadmap</button>
-    <button type="button" class="view-btn" data-view="missables">Missables</button>
-    <button type="button" class="view-btn" data-view="sources">Sources</button>
+  <div id="auditStrip" class="audit"></div>
+  <div id="goalBar" class="goalBar"></div>
+  <div id="stageChips" class="chips"></div>
+  <nav id="navTabs" class="tabs" aria-label="Guide sections">
+    <button class="tab on" data-view="checklist">Checklist</button>
+    <button class="tab" data-view="roadmap">Roadmap to platinum</button>
+    <button class="tab" data-view="missables">Missables &amp; watch</button>
+    <button class="tab" data-view="sources">Sources &amp; matrix</button>
   </nav>
-  <div class="toolbar">
-    <label class="search-wrap">Search <input id="search" type="search" placeholder="Search name, description or guide&hellip;" autocomplete="off"></label>
-    <label>Kind
-      <select id="kindFilter">
-        <option value="all">All kinds</option>
-        <option value="story">Story</option>
-        <option value="missable">Missable</option>
-        <option value="collectibles">Collectibles</option>
-        <option value="activities">Activities</option>
-        <option value="robberies">Robberies</option>
-        <option value="exploration">Exploration</option>
-        <option value="side">Side</option>
-      </select>
-    </label>
-    <label>Grade
-      <select id="gradeFilter">
-        <option value="all">All grades</option>
-        <option value="platinum">Platinum</option>
-        <option value="gold">Gold</option>
-        <option value="silver">Silver</option>
-        <option value="bronze">Bronze</option>
-      </select>
-    </label>
-    <label class="check"><input id="hideEarned" type="checkbox"> Hide earned</label>
-    <label class="check spoiler-check"><input id="spoilerToggle" type="checkbox" checked> Hide story spoilers</label>
-    <span class="toolbar-spacer"></span>
-    <button type="button" id="exportBtn" class="btn">Export progress</button>
-    <button type="button" id="importBtn" class="btn">Import progress</button>
-    <input id="importFile" type="file" accept="application/json,.json" hidden>
-  </div>
+  <div id="toolbar" class="toolbar"></div>
 </header>
-
 <main>
-  <section id="view-checklist" class="view">
-    <p class="sources-strip">Sources: PowerPyx &middot; PSNProfiles &middot; Exophase &middot; OutputLag &middot; KeenGamer &middot; Push Square &middot; GTABase &middot; GTA-Zone &middot; SixShore &middot; U7BUY — all read 20 Nov 2026. Full list, coverage counts and matrix in the Sources view.</p>
-    <div class="layout">
-      <div class="list-col">
-        <p class="list-meta" id="listMeta">Loading the trophy list&hellip;</p>
-        <ol class="trophy-list" id="trophyList"></ol>
-      </div>
-      <aside class="detail" id="detailPane" aria-live="polite">
-        <p class="detail-empty">Pick a trophy from the list to read its guide.</p>
-      </aside>
-    </div>
-  </section>
-
-  <section id="view-roadmap" class="view" hidden>
-    <h2>Roadmap — four stages to the platinum</h2>
-    <p class="section-lede">Built from the official trophy descriptions. Play the story first, then the 100% checklist, then the character lines, then the robberies and odd jobs. Total: about 200 hours.</p>
-    <div id="roadmapStages"></div>
-  </section>
-
-  <section id="view-missables" class="view" hidden>
-    <h2>Missables — what can actually go wrong</h2>
-    <p class="section-lede">Almost nothing in this list can be missed: there is no mission replay, but no trophy depends on how you play a mission, and free roam carries on after the credits. One trophy is the exception.</p>
-    <div class="missable-card" id="missableMain"></div>
-    <h3>Hidden trophies whose methods are not confirmed yet</h3>
-    <p class="section-lede">Five hidden trophies have no method confirmed by two sources. Do not trust any single posted method for these — wait for two sources to agree.</p>
-    <div id="unconfirmedList"></div>
-    <h3>Story trophies — spoiler setting at work</h3>
-    <p class="section-lede">With &ldquo;Hide story spoilers&rdquo; on, the 13 story trophies stay masked until you earn them or reveal one. That is this setting working, not missing data.</p>
-    <div id="storyMaskList"></div>
-  </section>
-
-  <section id="view-sources" class="view" hidden>
-    <h2>Sources — where every step comes from</h2>
-    <p class="section-lede">Every guide step cites at least one of these 10 sources, all read on 20 November 2026. Trophy names and descriptions are shown as published. Guide text is written in our own words — nothing is copied from the sources.</p>
-    <ol class="source-list" id="sourceList"></ol>
-    <h3>Source matrix — which source covers which trophy</h3>
-    <p class="section-lede">A filled cell means that source is cited for that trophy. Counts are computed from the trophy data itself.</p>
-    <div class="matrix-wrap"><table class="matrix" id="sourceMatrix"></table></div>
-  </section>
-</main>
-
-<div class="modal" id="ioModal" hidden>
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="ioTitle">
-    <h3 id="ioTitle">Export / import progress</h3>
-    <p class="modal-text">Your progress lives only in this browser (localStorage). Export a file to keep a copy or move it to another browser; import it back the same way.</p>
-    <label for="ioText">Progress file (JSON)</label>
-    <textarea id="ioText" rows="8" spellcheck="false"></textarea>
-    <div class="modal-actions">
-      <button type="button" id="ioDownload" class="btn primary">Download .json</button>
-      <button type="button" id="ioChoose" class="btn">Choose file&hellip;</button>
-      <button type="button" id="ioCopy" class="btn">Copy</button>
-      <button type="button" id="ioApply" class="btn primary">Import from this text</button>
-      <button type="button" id="ioClose" class="btn">Close</button>
-    </div>
-    <p class="modal-status" id="ioStatus"></p>
+  <div id="mainGrid" class="grid">
+    <section id="checklist" class="checklist" aria-label="Trophy checklist"></section>
+    <aside id="detail" class="detail" aria-label="Trophy guide"></aside>
   </div>
-</div>
-
+  <div id="view" class="view" style="display:none"></div>
+</main>
 <footer>
-  <p><strong>Unofficial fan guide.</strong> Trophy names and descriptions are published by Rockstar Games / PlayStation. Guide text is written in our own words from the sources listed in the Sources view. No Rockstar artwork, logos or game text beyond the official trophy names and descriptions is used.</p>
-  <p>Rarity figures are from Exophase, read 19 November 2026 (a launch-day sample — rates move fast in week one). Gamerscore is the Xbox equivalent of each trophy. This page works fully offline and saves progress only in this browser.</p>
-  <p>Saved in this browser &middot; <span id="savedNote">no progress saved yet</span></p>
+  <p id="footSources" class="footSources"></p>
+  <p class="footNote">Unofficial fan guide. Not affiliated with Rockstar Games. No Rockstar logo, artwork or game screenshots are used. Trophy names and descriptions are shown as PlayStation publishes them; all guidance is written in our own words for this ledger. Progress is saved in this browser only.</p>
 </footer>
-
 <script src="app.js"></script>
 </body>
 </html>
